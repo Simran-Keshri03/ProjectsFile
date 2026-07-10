@@ -1,5 +1,5 @@
 package TicTacToe;
-
+import java.util.Random;
 import java.util.Scanner;
 
 class TicTacToe {
@@ -40,7 +40,7 @@ class TicTacToe {
 
     static boolean checkColWin(){
         for(int j = 0; j<=2; j++){
-            if(board[0][j] != ' ' && board[0][j] == board[1][j] && board[2][j] == board[2][j]){
+            if(board[0][j] != ' ' && board[0][j] == board[1][j] && board[1][j] == board[2][j]){
                 return true;
             }
         }
@@ -63,11 +63,39 @@ class TicTacToe {
         }
         return false;
     }
+
+    static boolean checkDraw(){
+        for(int i=0; i<=2; i++){
+            for(int j=0; j<=2; j++){
+                if(board[i][j] ==' '){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
 
-class HumanPlayer{
+abstract class Player{
     String name;
     char mark;
+
+    abstract void makeMove();
+
+    boolean isValidMove(int row, int col){
+        if(row < 0 || row > 2 || col < 0 || col > 2){
+            System.out.println("Invalid Position");
+            return false;
+        }
+        if(row >= 0 && row <=2 && col >= 0 && col <=2){
+            if(TicTacToe.board[row][col]== ' '){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+class HumanPlayer extends Player{
 
     public HumanPlayer(String name, char mark){
         this.name = name;
@@ -81,20 +109,28 @@ class HumanPlayer{
             System.out.println("Enter the row and col");
             row = sc.nextInt();
             col =sc.nextInt();
-        }while(isValidMove(row, col));
+        }while(!isValidMove(row, col));
         TicTacToe.placeMark(row, col, mark);
-    }
-
-    boolean isValidMove(int row, int col){
-        if(row >= 0 && row <=2 && col >= 0 && col <=2){
-            if(TicTacToe.board[row][col]== ' '){
-                return true;
-            }
-        }
-        return false;
     }
 }
 
+class AIPlayer extends Player{
+
+    public AIPlayer(String name, char mark){
+        this.name = name;
+        this.mark = mark;
+    }
+
+    void makeMove(){
+        Random r = new Random();
+        int row, col ;
+        do{
+            row = r.nextInt(3);
+            col =r.nextInt(3);
+        }while(!isValidMove(row, col));
+        TicTacToe.placeMark(row, col, mark);
+    }
+}
 
 
 public class LunchGame {
@@ -102,16 +138,20 @@ public class LunchGame {
         TicTacToe t = new TicTacToe();
         
         HumanPlayer p1 = new HumanPlayer("Sam", 'x');
-        HumanPlayer p2 = new HumanPlayer("John", 'o');
+        //HumanPlayer p2 = new HumanPlayer("John", 'o');
+        AIPlayer p2 = new AIPlayer("TapAI", 'o');
 
-        HumanPlayer cp;
+        Player cp;
         cp = p1;
         while (true) {
-            System.out.println(cp.name + "turn");
+            System.out.println(cp.name + " turn");
             cp.makeMove();
             TicTacToe.dispBoard();
             if(TicTacToe.checkColWin() || TicTacToe.checkRowWin() || TicTacToe.checkDiaWin()){
-                System.out.println(cp.name + "has won.");
+                System.out.println(cp.name + " has won");
+                break;
+            }else if(TicTacToe.checkDraw()){
+                System.out.println("Game is draw");
                 break;
             }else{
                 if(cp==p1) cp = p2;
