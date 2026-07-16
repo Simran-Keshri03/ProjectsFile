@@ -135,7 +135,7 @@ class AIPlayer extends Player{
 
 public class LunchGame {
     public static void main(String[] args) {
-        TicTacToe t = new TicTacToe();
+        //TicTacToe t = new TicTacToe();
         
         HumanPlayer p1 = new HumanPlayer("Sam", 'x');
         //HumanPlayer p2 = new HumanPlayer("John", 'o');
