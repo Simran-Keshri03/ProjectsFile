@@ -1,21 +1,69 @@
-## Getting Started
+# 🎮 Tic Tac Toe Game
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+A console-based Tic Tac Toe game built using Java and Object-Oriented Programming (OOP) concepts. The game allows a human player to play against a computer-controlled AI.
 
-## Folder Structure
+---
 
-The workspace contains two folders by default, where:
+## 📌 Features
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- Human vs AI Gameplay
+- Random AI Move Generation
+- Winner Detection
+- Draw Detection
+- Input Validation
+- Interactive Console Interface
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+---
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## 🛠 Technologies Used
 
-## Dependency Management
+- Java
+- Object-Oriented Programming
+- Arrays
+- Random Class
+- Scanner Class
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
-=======
-# ProjectsFile
-A collection of Java projects and games built while learning Core Java, OOP, and software development concepts.
+---
+
+## 💡 OOP Concepts Used
+
+- Classes & Objects
+- Inheritance
+- Abstraction
+- Method Overriding
+- Encapsulation
+- Polymorphism
+
+---
+
+## 📂 Project Structure
+
+TicTacToe
+│
+├── TicTacToe.java
+├── Player.java
+├── HumanPlayer.java
+├── AIPlayer.java
+└── LunchGame.java
+
+---
+
+## ▶ How to Run
+
+Compile
+
+javac TicTacToe/*.java
+
+Run
+
+java TicTacToe.LunchGame
+
+---
+
+## 🎯 Future Improvements
+
+- GUI using Java Swing
+- JavaFX Version
+- Minimax AI
+- Scoreboard
+- Multiplayer Mode
